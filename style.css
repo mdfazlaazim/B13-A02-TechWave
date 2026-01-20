@@ -15,14 +15,38 @@ body{
   justify-content:space-between;
   align-items:center;
   padding:25px 80px;
+  gap:18px;
 }
 
 .logo{
   font-size:26px;
   font-weight:700;
 }
-
 .logo span{ color:#ff4dff; }
+
+.logo-anim{
+  display:inline-block;
+  animation: logoFloat 2.5s ease-in-out infinite;
+}
+.logo-anim span{
+  display:inline-block;
+  animation: logoGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes logoFloat{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-4px); }
+}
+@keyframes logoGlow{
+  0%,100%{
+    text-shadow:0 0 0 rgba(255,77,255,0);
+    transform:scale(1);
+  }
+  50%{
+    text-shadow:0 0 14px rgba(255,77,255,.9);
+    transform:scale(1.03);
+  }
+}
 
 .nav-links{
   display:flex;
@@ -55,6 +79,20 @@ body{
 .subscribe-btn img{
   width:18px;
   height:18px;
+}
+
+.menu-btn{
+  display:none;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  padding:8px;
+  border-radius:12px;
+}
+
+.menu-btn img{
+  width:28px;
+  height:28px;
 }
 
 .hero{
@@ -104,6 +142,7 @@ body{
   color:#ccc;
   max-width:520px;
   margin:0 auto 35px;
+  line-height:1.5;
 }
 
 .hero-buttons{
@@ -143,6 +182,7 @@ body{
   max-width:700px;
   margin:20px auto;
   color:#ccc;
+  line-height:1.6;
 }
 
 .stats{
@@ -164,7 +204,6 @@ body{
 .why h2{
   text-align:center;
   margin-bottom:30px;
-  margin-top:0;
 }
 
 .why-grid{
@@ -183,22 +222,10 @@ body{
   grid-column:1 / 2;
   grid-row:1 / 3;
 }
-
-.why-card:nth-child(2){
-  grid-column:2 / 4;
-}
-
-.why-card:nth-child(3){
-  grid-column:2 / 4;
-}
-
-.why-card:nth-child(4){
-  grid-column:1 / 3;
-}
-
-.why-card:nth-child(5){
-  grid-column:3 / 4;
-}
+.why-card:nth-child(2){ grid-column:2 / 4; }
+.why-card:nth-child(3){ grid-column:2 / 4; }
+.why-card:nth-child(4){ grid-column:1 / 3; }
+.why-card:nth-child(5){ grid-column:3 / 4; }
 
 .episodes{
   padding:90px 80px;
@@ -319,7 +346,6 @@ body{
   align-items:center;
   justify-content:center;
   overflow:hidden;
-
   background: radial-gradient(circle at top,#2a145f,#0b061a);
 }
 
@@ -383,51 +409,39 @@ body{
   color:#a9a2bb;
 }
 
+@media(max-width:768px){
+  .navbar{ padding:18px 20px; }
+  .about,.why,.episodes,.host-section{ padding-left:20px; padding-right:20px; }
+}
+
 @media(max-width:576px){
   .nav-links{ display:none; }
-
-  .stats{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .why-grid,
-  .episode-grid{
-    grid-template-columns:1fr;
-  }
-
-  .why-card{
-    grid-column:auto !important;
-    grid-row:auto !important;
-  }
-
-  .host-section{
-    padding:60px 20px 40px;
-  }
-
-  .host-card{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .host-details p{
-    max-width:100%;
-  }
-
-  .host-social{
+  .subscribe-btn{ display:none; }
+  .menu-btn{
+    display:flex;
+    align-items:center;
     justify-content:center;
   }
 
-  .site-footer{
-    height:360px;
-  }
+  .hero{ padding:70px 16px; }
+  .hero-circle{ width:240px; height:240px; margin-bottom:22px; }
+  .mic-img{ width:58px; }
+  .badge{ top:14px; right:14px; padding:7px 18px; font-size:14px; }
 
-  .site-footer::before,
-  .site-footer::after{
-    width:70%;
-    opacity:.35;
-  }
+  .hero h1{ font-size:40px; }
+  .hero-desc{ font-size:14px; margin-bottom:22px; }
 
-  .footer-brand{
-    font-size:42px;
-  }
+  .hero-buttons{ gap:12px; flex-wrap:wrap; }
+  .spotify-btn,.outline-btn{ padding:12px 18px; }
+
+  .stats{ grid-template-columns:repeat(2,1fr); gap:22px; }
+  .why-grid,.episode-grid{ grid-template-columns:1fr; }
+  .why-card{ grid-column:auto !important; grid-row:auto !important; }
+
+  .host-card{ flex-direction:column; text-align:center; }
+  .host-social{ justify-content:center; }
+
+  .site-footer{ height:360px; }
+  .site-footer::before,.site-footer::after{ width:70%; opacity:.35; }
+  .footer-brand{ font-size:42px; }
 }
